@@ -1,0 +1,39 @@
+// VISUALIZAR TODOS LOS CONTENEDORES 
+docker ps 
+//detener contenedor espera a terminar el proceso y detiene, si pasan mas de 10 segundos manda a llamar KILL 
+docker stop [container_id ó container_name]
+//mata el contendor aun sin esta corriendo o no un proceso, no espera
+docker kill [container_id ó container_name]
+
+//ejecutar un comando en el contenedor
+docker exec -it [container_id] [command]
+
+//salir del bash
+exit
+
+//run docker
+docker run 
+
+
+docker run -it [container id] -- puedes interrumpir la tarea primaria como en redis
+
+//
+
+
+acoplamiento grado de depencencia 
+
+
+QUERY--REGRESA DATO
+COMMAND-- MODIFICAN DATOS pero no regresan nada, a veces una pequeña parte
+
+
+//CREAR DOCKER NETWORK
+docker network create --attachable -d [compponente]  [name]
+//version de docker compose
+docker-compose --version
+//ejecutar yaml docker compose
+docker-compose up -d [yaml name]
+
+
+COMMAND
+Descrpcion de una actividad a realizar--nombres imperativos  --> abrirCuentaCommand
