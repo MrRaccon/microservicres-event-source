@@ -37,3 +37,8 @@ docker-compose up -d [yaml name]
 
 COMMAND
 Descrpcion de una actividad a realizar--nombres imperativos  --> abrirCuentaCommand
+
+EVENTS
+ES UNA ACTIVIDAD QUE SUCEDIO EN UNA APLICACION -- ES UN AGGREGATE -- UN GRUPO DE ENTIDADESS QUE MANTIENEN EL ESTADO DE LA APLICACION
+EVENTOS NOMBRAS EN PASADO -- cuentaCorrienteCreadaEvent
+
