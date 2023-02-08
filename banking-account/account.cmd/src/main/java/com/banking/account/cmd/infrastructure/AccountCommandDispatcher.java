@@ -8,16 +8,16 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.banking.cqrs.core.commands.BaseCommand;
-import com.banking.cqrs.core.commands.CommandHabdlerMethod;
-import com.banking.cqrs.core.infraestructure.CommandDispatcher;
+import com.banking.cqrs.core.commands.CommandHandlerMethod;
+import com.banking.cqrs.core.infraestructure.CommandDispatcherMediator;
 
 @Service
-public class AccountCommandDispatcher implements CommandDispatcher {
+public class AccountCommandDispatcher implements CommandDispatcherMediator {
 
-	private final Map<Class<? extends BaseCommand>, List<CommandHabdlerMethod>> routes = new HashMap<>();
+	private final Map<Class<? extends BaseCommand>, List<CommandHandlerMethod>> routes = new HashMap<>();
 
 	@Override
-	public <T extends BaseCommand> void registerHandler(Class<T> type, CommandHabdlerMethod<T> handler) {
+	public <T extends BaseCommand> void registerHandler(Class<T> type, CommandHandlerMethod<T> handler) {
 		//AGREGA UN NUEVO VALOR 
 		var handlers = routes.computeIfAbsent(type, c -> new LinkedList<>());
 		handlers.add(handler);
