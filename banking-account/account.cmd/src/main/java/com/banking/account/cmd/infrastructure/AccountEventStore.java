@@ -14,12 +14,16 @@ import com.banking.cqrs.core.events.EventModel;
 import com.banking.cqrs.core.exceptions.AggregateNotFoundException;
 import com.banking.cqrs.core.exceptions.ConcurrencyException;
 import com.banking.cqrs.core.infraestructure.EventStore;
+import com.banking.cqrs.core.produces.EventProducer;
 
 @Service
 public class AccountEventStore implements EventStore {
 
 	@Autowired
 	private EventStoreRepository eventStoreRepository;
+	
+	@Autowired
+	private EventProducer eventProducer;
 	
 	@Override
 	public void saveEvents(String aggregateId, Iterable<BaseEvent> events, int expectedVersion) {
@@ -42,8 +46,9 @@ public class AccountEventStore implements EventStore {
 					.build();
 			var persistenceEvent = eventStoreRepository.save(eventModel);
 			
-			if(persistenceEvent != null) {
+			if(persistenceEvent.getId().isEmpty()) {
 					//se debe de crear el evento para KAFKA
+				eventProducer.produce(event.getClass().getSimpleName(), event);
 			}
 		}
 		

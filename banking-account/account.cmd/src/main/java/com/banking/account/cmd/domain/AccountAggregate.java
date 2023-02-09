@@ -85,4 +85,10 @@ public class AccountAggregate extends AggregateRoot{
 	    this.id =event.getId();
 	    this.active =false;
    }
+
+public double getBalance() {
+	return balance;
+}
+   
+   
 }
