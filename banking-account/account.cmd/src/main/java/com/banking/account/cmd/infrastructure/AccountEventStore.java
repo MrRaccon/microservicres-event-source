@@ -28,8 +28,9 @@ public class AccountEventStore implements EventStore {
 	@Override
 	public void saveEvents(String aggregateId, Iterable<BaseEvent> events, int expectedVersion) {
       //retorna eventos existentes
-		var eventStream = eventStoreRepository.findByaggregateIdentifier(aggregateId);
-		if(expectedVersion != 1 && eventStream.get(eventStream.size()-1).getVersion()!=expectedVersion) {
+		var eventStream = eventStoreRepository.findByAggregateIdentifier(aggregateId);
+	        if(expectedVersion != -1 && eventStream.get(eventStream.size() - 1).getVersion() != expectedVersion){
+
 			throw new ConcurrencyException();
 		}
 		var version = expectedVersion;
@@ -46,7 +47,7 @@ public class AccountEventStore implements EventStore {
 					.build();
 			var persistenceEvent = eventStoreRepository.save(eventModel);
 			
-			if(persistenceEvent.getId().isEmpty()) {
+			if(!persistenceEvent.getId().isEmpty()) {
 					//se debe de crear el evento para KAFKA
 				eventProducer.produce(event.getClass().getSimpleName(), event);
 			}
@@ -56,7 +57,7 @@ public class AccountEventStore implements EventStore {
 
 	@Override
 	public List<BaseEvent> getEvent(String aggregateId) {
-		var eventStream = eventStoreRepository.findByaggregateIdentifier(aggregateId);
+		var eventStream = eventStoreRepository.findByAggregateIdentifier(aggregateId);
 		if(eventStream==null||eventStream.isEmpty()) {
 			throw new AggregateNotFoundException("La cuenta del banco es incorrecta");
 		}

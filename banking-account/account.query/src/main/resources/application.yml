@@ -1,27 +1,27 @@
 server: #COMMAND PRODUCE MENSAJES -- QUERY ES EL CONSUMER
-  port: 5001
-  
+  port: 5002
+
 spring:
   jpa:
-     database-platform : org.hibernate.dialect.MySQL8Dialect
-     show-sql: true
-     hibernate:
-      ddl-auto: update  
-  datasource :
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
     url: jdbc:mysql://localhost:3307/bankingAccount?createDatabaseIfNotExist=true
-    username: root
-    password: VaxiDrez2005$
+    username: "root"
+    password: "VaxiDrez2005$"
   kafka:
-    listener: 
-      ack-mode: MANUAL_INMEDIATE # remueve o no el mensaje de kafka  
-    consumer: 
+    listener:
+      ack-mode: MANUAL_IMMEDIATE # remueve o no el mensaje de kafka
+    consumer:
       bootstrap-servers: localhost:9092
       group-id: bankaccConsumer #si tenemos dos consumer y ambos tiene el mismo group id, ambos compartiran el mismo upset(), si son diferentes ambos consumen el mismo mensaje 
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.support.serializer.JsonDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring:
           json:
             trusted:
-              package: '*' # todos los objectos son confiables de ser serializados
+              packages: '*' # todos los objectos son confiables de ser serializados

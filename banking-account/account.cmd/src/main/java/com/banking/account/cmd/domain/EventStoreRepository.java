@@ -8,5 +8,5 @@ import com.banking.cqrs.core.events.EventModel;
 
 public interface EventStoreRepository extends MongoRepository<EventModel, String>{
 
-	 List<EventModel> findByaggregateIdentifier(String aggregateIdentifier);
+	 List<EventModel> findByAggregateIdentifier(String aggregateIdentifier);
 }
