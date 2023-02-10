@@ -1,0 +1,208 @@
+{
+	"info": {
+		"_postman_id": "31eae88b-88d4-41b7-b190-5506861d2efc",
+		"name": "EVENT DRIVE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CREATE ACCOUNT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"accountHolder\": \"shotaro GOMEZ\",\n    \"accountType\": \"CURRENT\",\n    \"openingBalance\": \"40.0\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5001/api/v1/openBankAccount/",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"openBankAccount",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DEPOSIT FUNDS",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\":60.00\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5001/api/v1/depositFunds/Q_nXxM2-RPmqI6LtznZUSw",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"depositFunds",
+						"Q_nXxM2-RPmqI6LtznZUSw"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WITHDRAW FUNDS",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\":50\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5001/api/v1/withDrawFunds/Q_nXxM2-RPmqI6LtznZUSw",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"withDrawFunds",
+						"Q_nXxM2-RPmqI6LtznZUSw"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CLOSE ACCOUNT",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:5001/api/v1/closeBankAccount/Q_nXxM2-RPmqI6LtznZUSw",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"closeBankAccount",
+						"Q_nXxM2-RPmqI6LtznZUSw"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "QUERY ALL ACCOUNTS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5002/api/v1/bankAccountLookup/",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"api",
+						"v1",
+						"bankAccountLookup",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "QUERY GET ACCOUNT BY ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5002/api/v1/bankAccountLookup/byId/YZDCmNeIQQ-D6HDvD456WQ",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"api",
+						"v1",
+						"bankAccountLookup",
+						"byId",
+						"YZDCmNeIQQ-D6HDvD456WQ"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "QUERY GET ACCOUNT BY HOLDER",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5002/api/v1/bankAccountLookup/byHolder/shotaro_Gomez",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"api",
+						"v1",
+						"bankAccountLookup",
+						"byHolder",
+						"shotaro_Gomez"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "QUERY GET WITH BALANCE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5002/api/v1/bankAccountLookup/withBalance/GREATER_THAN/10",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"api",
+						"v1",
+						"bankAccountLookup",
+						"withBalance",
+						"GREATER_THAN",
+						"10"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
